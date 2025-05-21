@@ -1,11 +1,15 @@
 package ng.com.ninepsb.nibss_nip_lib.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
+import org.springframework.ws.config.annotation.EnableWs;
 
+@EnableWs
 @Configuration
+@ConditionalOnProperty(name = "nip.webservice.enabled", havingValue = "true")
 public class WebServiceConfig {
 
     @Bean
