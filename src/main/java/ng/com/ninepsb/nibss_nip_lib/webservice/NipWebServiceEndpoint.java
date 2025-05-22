@@ -7,7 +7,7 @@ import ng.com.ninepsb.nibss_nip_lib.model.requests.NipSoapRequest;
 import ng.com.ninepsb.nibss_nip_lib.model.response.NipErrorResponse;
 import ng.com.ninepsb.nibss_nip_lib.model.response.NipSoapResponse;
 import ng.com.ninepsb.nibss_nip_lib.service.MessageEncryptionService;
-import ng.com.ninepsb.nibss_nip_lib.service.NipRequestHandler;
+import ng.com.ninepsb.nibss_nip_lib.handlers.NipRequestHandler;
 import ng.com.ninepsb.nibss_nip_lib.service.NipXmlConverter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -39,15 +39,7 @@ public class NipWebServiceEndpoint {
             String decryptedXml = messageEncryptionService.decrypt(encryptedRequest);
 
             // Determine the transaction type and process accordingly
-            String response;
-            if (decryptedXml.contains("FundTransferRequest")) {
-                response = handleFundTransfer(decryptedXml);
-            } else if (decryptedXml.contains("AccountEnquiryRequest")) {
-                response = handleAccountEnquiry(decryptedXml);
-            } else {
-                // Handle other transaction types here...
-                throw new UnsupportedOperationException("Unsupported transaction type");
-            }
+            String response = nipRequestHandler.handle(decryptedXml);
 
             // Encrypt the response
             String encryptedResponse = messageEncryptionService.encrypt(response);

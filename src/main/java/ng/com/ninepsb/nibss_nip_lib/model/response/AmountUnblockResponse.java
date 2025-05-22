@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
-
 /**
  * 027 Amount Unblock Response (AmountUnblockResponse)
  * Extends BaseResponse.
@@ -24,29 +23,29 @@ public class AmountUnblockResponse extends BaseResponse {
     // ResponseMessage will be null as it's not present in the original XML.
 
     @XmlElement(name = "DestinationInstitutionCode", namespace = "http://core.nip.nibss/", required = true)
-    private String DestinationInstitutionCode;
+    private String destinationInstitutionCode;
 
     @XmlElement(name = "ChannelCode", namespace = "http://core.nip.nibss/", required = true)
-    private int ChannelCode;
+    private int channelCode;
 
     @XmlElement(name = "ReferenceCode", namespace = "http://core.nip.nibss/", required = true)
-    private String ReferenceCode;
+    private String referenceCode;
 
     @XmlElement(name = "TargetAccountName", namespace = "http://core.nip.nibss/", required = true)
-    private String TargetAccountName;
+    private String targetAccountName;
 
     @XmlElement(name = "TargetBankVerificationNumber", namespace = "http://core.nip.nibss/", required = true)
-    private String TargetBankVerificationNumber;
+    private String targetBankVerificationNumber;
 
     @XmlElement(name = "TargetAccountNumber", namespace = "http://core.nip.nibss/", required = true)
-    private String TargetAccountNumber;
+    private String targetAccountNumber;
 
     @XmlElement(name = "ReasonCode", namespace = "http://core.nip.nibss/", required = true)
-    private String ReasonCode;
+    private String reasonCode;
 
     @XmlElement(name = "Narration", namespace = "http://core.nip.nibss/", required = true)
-    private String Narration;
+    private String narration;
 
     @XmlElement(name = "Amount", namespace = "http://core.nip.nibss/", required = true)
-    private BigDecimal Amount;
+    private BigDecimal amount;
 }

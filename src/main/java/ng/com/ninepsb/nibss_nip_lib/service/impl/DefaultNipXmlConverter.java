@@ -1,21 +1,29 @@
 package ng.com.ninepsb.nibss_nip_lib.service.impl;
 
 
+import lombok.extern.slf4j.Slf4j;
 import ng.com.ninepsb.nibss_nip_lib.exception.XmlConversionException;
 import ng.com.ninepsb.nibss_nip_lib.service.NipXmlConverter;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.Schema;
+import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 
 /**
  * {@inheritDoc}
  */
+@Slf4j
 @Component
 public class DefaultNipXmlConverter implements NipXmlConverter {
     @Override
@@ -110,6 +118,33 @@ public class DefaultNipXmlConverter implements NipXmlConverter {
             return (T) unmarshaller.unmarshal(reader);
         } catch (JAXBException e) {
             throw new XmlConversionException("Failed to convert XML to object", e);
+        }
+    }
+
+    @Override
+    public String getRootElementName(String xmlString) {
+        if (xmlString == null || xmlString.trim().isEmpty()) {
+            return null;
+        }
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            // Parse the XML string
+            Document document = builder.parse(
+                    new ByteArrayInputStream(xmlString.getBytes(StandardCharsets.UTF_8))
+            );
+
+            // Get the root element
+            Element rootElement = document.getDocumentElement();
+
+            // Return the local name (without namespace prefix)
+            return rootElement.getLocalName();
+
+        } catch (Exception e) {
+            log.warn(":::Error parsing xml", e);
+            return null;
         }
     }
 }

@@ -2,7 +2,9 @@ package ng.com.ninepsb.nibss_nip_lib.model.requests;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import ng.com.ninepsb.nibss_nip_lib.annotations.NipRequestItem;
 import ng.com.ninepsb.nibss_nip_lib.model.BaseTransaction;
+import ng.com.ninepsb.nibss_nip_lib.model.response.BalanceEnquiryResponse;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,6 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @EqualsAndHashCode(callSuper = true)
 @XmlRootElement(name = "BalanceEnquiryRequest", namespace = "http://core.nip.nibss/")
 @XmlAccessorType(XmlAccessType.FIELD)
+@NipRequestItem(request = BalanceEnquiryRequest.class, response = BalanceEnquiryResponse.class)
 public class BalanceEnquiryRequest extends BaseTransaction {
 
     // SessionID, DestinationInstitutionCode, ChannelCode are inherited from BaseTransaction.

@@ -10,4 +10,5 @@ public interface NipXmlConverter {
     <T> T fromXml(String xml, Class<T> valueType) throws XmlConversionException;
     <T> String toXml(T object, Schema schema) throws XmlConversionException;
     <T> T fromXml(String xml, Class<T> clazz, Schema schema) throws XmlConversionException;
+    String getRootElementName(String xmlString);
 }

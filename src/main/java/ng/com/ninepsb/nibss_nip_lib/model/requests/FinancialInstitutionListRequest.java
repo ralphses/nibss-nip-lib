@@ -2,9 +2,11 @@ package ng.com.ninepsb.nibss_nip_lib.model.requests;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import ng.com.ninepsb.nibss_nip_lib.annotations.NipRequestItem;
 import ng.com.ninepsb.nibss_nip_lib.model.BaseTransaction;
 import ng.com.ninepsb.nibss_nip_lib.model.Header;
 import ng.com.ninepsb.nibss_nip_lib.model.Record;
+import ng.com.ninepsb.nibss_nip_lib.model.response.FinancialInstitutionListResponse;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -24,6 +26,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @XmlRootElement(name = "FinancialInstitutionListRequest", namespace = "http://core.nip.nibss/")
 @XmlAccessorType(XmlAccessType.FIELD)
+@NipRequestItem(request = FinancialInstitutionListRequest.class, response = FinancialInstitutionListResponse.class)
 public class FinancialInstitutionListRequest extends BaseTransaction {
 
     // SessionID, DestinationInstitutionCode, ChannelCode, transactionReference

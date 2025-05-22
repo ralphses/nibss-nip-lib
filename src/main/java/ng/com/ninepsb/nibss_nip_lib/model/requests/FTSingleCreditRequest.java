@@ -2,7 +2,9 @@ package ng.com.ninepsb.nibss_nip_lib.model.requests;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import ng.com.ninepsb.nibss_nip_lib.annotations.NipRequestItem;
 import ng.com.ninepsb.nibss_nip_lib.model.BaseTransaction;
+import ng.com.ninepsb.nibss_nip_lib.model.response.FTSingleCreditResponse;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,6 +20,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @XmlRootElement(name = "FTSingleCreditRequest", namespace = "http://core.nip.nibss/")
 @XmlAccessorType(XmlAccessType.FIELD)
+@NipRequestItem(request = FTSingleCreditRequest.class, response = FTSingleCreditResponse.class)
 public class FTSingleCreditRequest extends BaseTransaction {
 
     // SessionID, DestinationInstitutionCode, ChannelCode are inherited from BaseTransaction.
